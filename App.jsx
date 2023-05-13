@@ -1,22 +1,15 @@
-import {useState} from 'react';
-import {SafeAreaView, StyleSheet} from 'react-native';
-import {Header} from './components';
-import ConnectionsProvider from './context/ContectionsContext';
-import ComponentsState from './components/components-state';
+import {ConnectionsProvider} from './features/connections';
+import {ModalsProvider} from './features/modals';
+import {Home} from './screens';
 
 const App = () => {
-  const [isConnected, setIsConnected] = useState(false);
-
   return (
-    <ConnectionsProvider>
-      <SafeAreaView style={{flex: 1}}>
-        <Header isConnected={isConnected} />
-        <ComponentsState />
-      </SafeAreaView>
-    </ConnectionsProvider>
+    <ModalsProvider>
+      <ConnectionsProvider>
+        <Home />
+      </ConnectionsProvider>
+    </ModalsProvider>
   );
 };
-
-const styles = new StyleSheet.create({});
 
 export default App;

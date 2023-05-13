@@ -1,6 +1,6 @@
 import {createContext, useContext, useReducer} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
 import {intialState, reducer} from '../reducers/connectionsReducer';
+import {ACTIONS} from '../actions/connectionsActions';
 
 const ConnectionsContext = createContext(intialState);
 
@@ -11,8 +11,22 @@ export default function ConnectionsProvider({children}) {
     dispatch({type: ACTIONS.SET_CONNECTION, payload: {isConnected}});
   };
 
+  const setValue = (name, value) => {
+    const payload = {[name]: value};
+
+    dispatch({type: ACTIONS.SET_VALUE, payload});
+  };
+
+  const setValues = obj => {
+    const payload = obj;
+
+    dispatch({type: ACTIONS.SET_VALUES, payload});
+  };
+
   const contextValues = {
     state,
+    setValue,
+    setValues,
     setConnection,
   };
 

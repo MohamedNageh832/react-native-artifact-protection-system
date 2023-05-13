@@ -1,7 +1,13 @@
+import {ACTIONS} from '../actions/connectionsActions';
+
 export const intialState = {
   tempreture: '0',
   tempretureState: 'safe',
   isConnected: false,
+  discovering: false,
+  availableDevices: null,
+  pairedDevices: null,
+  connectedDevice: null,
 };
 
 export const reducer = (state, action) => {
@@ -10,6 +16,10 @@ export const reducer = (state, action) => {
   switch (type) {
     case ACTIONS.SET_CONNECTION:
       return {...state, isConnected: payload.isConnected};
+    case ACTIONS.SET_VALUE:
+      return {...state, ...payload};
+    case ACTIONS.SET_VALUES:
+      return {...state, ...payload};
     default:
       throw Error(`Unhandled action type: "${type}"`);
   }

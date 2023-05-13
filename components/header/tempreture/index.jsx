@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View} from 'react-native';
 import {externalStyles} from './styles';
 import {MESSAGES} from './constants';
-import {useConnections} from '../../../context/ContectionsContext';
+import {useConnections} from '../../../features/connections/context/ContectionsContext';
 
 export default function Tempreture() {
   const {state} = useConnections();

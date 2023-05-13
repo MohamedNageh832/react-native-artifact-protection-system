@@ -1,3 +1,5 @@
-const {default: Header} = require('./header');
+import ComponentsState from './components-state';
+import Header from './header';
+import PositionCenter from './position-center';
 
-export {Header};
+export {Header, ComponentsState, PositionCenter};

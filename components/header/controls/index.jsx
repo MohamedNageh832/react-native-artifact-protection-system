@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import {externalStyles} from './styles';
-import {useConnections} from '../../../context/ContectionsContext';
+import {useConnections} from '../../../features/connections/context/ContectionsContext';
 
 export default function Controls() {
   const {state} = useConnections();

@@ -23,10 +23,15 @@ export const externalStyles = props => {
       paddingHorizontal: 12,
       borderWidth: 1,
       borderStyle: 'solid',
-      borderColor: isConnected ? COLORS.lightRed : COLORS.green,
       borderRadius: 20,
       color: '#ffffff',
       fontSize: 12,
+    },
+    connectionBtnDisconnect: {
+      borderColor: COLORS.lightRed,
+    },
+    connectionBtnConnect: {
+      borderColor: COLORS.green,
     },
   });
 };
