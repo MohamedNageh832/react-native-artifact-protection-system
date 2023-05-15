@@ -16,7 +16,6 @@ const DeviceCard = ({data}) => {
     setShowAvailableDevicesModal,
   } = useModals();
   const {name, address, id} = data || {};
-
   const styles = externalStyles();
 
   useEffect(() => {
@@ -42,28 +41,37 @@ const DeviceCard = ({data}) => {
   const handlePress = async () => {
     setShowLoadingModal(true);
 
-    const connected = pairedDevices.find(device => device.id === id)
-      ? await BluetoothSerial.connect(id)
-      : await pairAndConnect(id);
+    try {
+      const connected = pairedDevices.find(device => device.id === id)
+        ? await BluetoothSerial.connect(id)
+        : await pairAndConnect(id);
+
+      console.log(connected);
+
+      if (connected) {
+        setShowSuccessModal(true, {
+          title: 'Successfully Connected',
+          messages: [`Connected to ${name} device`],
+        });
+
+        setValue('isConnected', true);
+        setShowAvailableDevicesModal(false);
+
+        BluetoothSerial.write('Connected');
+
+        const timeout = setTimeout(() => {
+          setShowSuccessModal(false);
+          clearTimeout(timeout);
+        }, 1000);
+      }
+    } catch (err) {
+      setShowErrorModal(true, {
+        title: "Can't connect to device!",
+        messages: ['Connection failed please try again!'],
+      });
+    }
 
     setShowLoadingModal(false);
-
-    if (connected) {
-      setShowSuccessModal(true, {
-        title: 'Successfully Connected',
-        messages: [`Connected to ${name} device`],
-      });
-
-      setValue('isConnected', true);
-      setShowAvailableDevicesModal(false);
-
-      BluetoothSerial.write('Connected');
-
-      const timeout = setTimeout(() => {
-        setShowSuccessModal(false);
-        clearTimeout(timeout);
-      }, 1000);
-    }
   };
 
   return (
