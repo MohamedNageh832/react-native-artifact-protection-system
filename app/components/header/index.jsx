@@ -19,13 +19,14 @@ export default function Header() {
     BluetoothSerial.withDelimiter('\r').then(() => {
       BluetoothSerial.on('read', msg => {
         const {data} = msg;
-        const processedData = data.slice(0, data.length - 2);
-        const [identifier, value] = processedData.split(':');
+        if (data.includes('temp')) {
+          const processedData = data.slice(0, data.length - 2);
+          const [identifier, value] = processedData.split(':');
 
-        if (identifier.trim().toLowerCase() === 'temp') {
-          setValue('tempreture', value);
+          if (identifier.trim().toLowerCase().includes('temp')) {
+            setValue('tempreture', value);
+          }
         }
-
         console.log(data);
       });
     });

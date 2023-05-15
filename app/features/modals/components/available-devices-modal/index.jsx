@@ -19,7 +19,7 @@ import {getPairedDevices} from './utils/getPairedDevices';
 
 const AvailableDevicesModal = () => {
   const {setShowAvailableDevicesModal, setShowLoadingModal} = useModals();
-  const {state: connectionsState, setValue, setValues} = useConnections();
+  const {state: connectionsState, setValue} = useConnections();
   const {discovering, pairedDevices, availableDevices} = connectionsState;
   const styles = externalStyles();
 

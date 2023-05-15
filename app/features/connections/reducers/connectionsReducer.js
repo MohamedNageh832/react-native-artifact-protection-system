@@ -1,7 +1,9 @@
 import {ACTIONS} from '../actions/connectionsActions';
 
 export const intialState = {
-  tempreture: '0',
+  tempreture: 0,
+  warningTempreture: 30,
+  dangerTempreture: 40,
   tempretureState: 'safe',
   isConnected: false,
   discovering: false,

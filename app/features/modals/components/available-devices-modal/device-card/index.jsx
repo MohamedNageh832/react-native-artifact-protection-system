@@ -34,8 +34,14 @@ const DeviceCard = ({data}) => {
 
     BluetoothSerial.on('connectionLost', handleConnectionLoss);
 
-    return () =>
-      BluetoothSerial.removeListener('connectionLost', handleConnectionLoss);
+    return async () => {
+      try {
+        await BluetoothSerial.removeListener(
+          'connectionLost',
+          handleConnectionLoss,
+        );
+      } catch (err) {}
+    };
   }, []);
 
   const handlePress = async () => {
@@ -45,8 +51,6 @@ const DeviceCard = ({data}) => {
       const connected = pairedDevices.find(device => device.id === id)
         ? await BluetoothSerial.connect(id)
         : await pairAndConnect(id);
-
-      console.log(connected);
 
       if (connected) {
         setShowSuccessModal(true, {
@@ -65,6 +69,7 @@ const DeviceCard = ({data}) => {
         }, 1000);
       }
     } catch (err) {
+      console.log(err);
       setShowErrorModal(true, {
         title: "Can't connect to device!",
         messages: ['Connection failed please try again!'],
