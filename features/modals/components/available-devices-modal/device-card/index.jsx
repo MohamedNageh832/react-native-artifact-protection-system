@@ -4,6 +4,7 @@ import {externalStyles} from './styles';
 import {useModals} from '../../../context/ModalsContext';
 import {useConnections} from '../../../../connections/context/ContectionsContext';
 import {pairAndConnect} from '../utils/pairAndConnect';
+import {useEffect} from 'react';
 
 const DeviceCard = ({data}) => {
   const {state, setValue} = useConnections();
@@ -11,11 +12,32 @@ const DeviceCard = ({data}) => {
   const {
     setShowSuccessModal,
     setShowLoadingModal,
+    setShowErrorModal,
     setShowAvailableDevicesModal,
   } = useModals();
   const {name, address, id} = data || {};
 
   const styles = externalStyles();
+
+  useEffect(() => {
+    const handleConnectionLoss = () => {
+      setValue('isConnected', false);
+
+      setShowErrorModal(true, {
+        title: 'Connection lost!',
+        messages: [
+          'Connection was lost please make sure you are within a proper range and retry again',
+        ],
+      });
+
+      setShowAvailableDevicesModal(true);
+    };
+
+    BluetoothSerial.on('connectionLost', handleConnectionLoss);
+
+    return () =>
+      BluetoothSerial.removeListener('connectionLost', handleConnectionLoss);
+  }, []);
 
   const handlePress = async () => {
     setShowLoadingModal(true);

@@ -1,5 +1,4 @@
 import {createContext, useContext, useReducer} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
 import {intialState, reducer} from '../reducers/modalsReducer';
 import {ACTIONS} from '../actions/modalActions';
 
@@ -28,10 +27,19 @@ export default function ModalsProvider({children}) {
     dispatch({type: ACTIONS.SET_SHOW_AVAILABLE_DEVICES_MODAL, payload});
   };
 
+  const setShowErrorModal = (show, config) => {
+    const {title, messages} = config || {};
+
+    const payload = {show, title, messages};
+
+    dispatch({type: ACTIONS.SET_SHOW_ERROR_MODAL, payload});
+  };
+
   const contextValues = {
     state,
     setShowLoadingModal,
     setShowSuccessModal,
+    setShowErrorModal,
     setShowAvailableDevicesModal,
   };
 
