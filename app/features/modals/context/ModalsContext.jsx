@@ -27,6 +27,12 @@ export default function ModalsProvider({children}) {
     dispatch({type: ACTIONS.SET_SHOW_AVAILABLE_DEVICES_MODAL, payload});
   };
 
+  const setShowDisableSecurityModal = show => {
+    const payload = {show};
+
+    dispatch({type: ACTIONS.SET_SHOW_DISABLE_SECURITY_MODAL, payload});
+  };
+
   const setShowErrorModal = (show, config) => {
     const {title, messages} = config || {};
 
@@ -41,6 +47,7 @@ export default function ModalsProvider({children}) {
     setShowSuccessModal,
     setShowErrorModal,
     setShowAvailableDevicesModal,
+    setShowDisableSecurityModal,
   };
 
   return (

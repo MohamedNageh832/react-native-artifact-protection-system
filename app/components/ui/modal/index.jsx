@@ -1,7 +1,10 @@
 import {StyleSheet, View} from 'react-native';
 import PositionCenter from '../../position-center';
+import {externalStyles} from './styles';
 
 const Modal = ({children}) => {
+  const styles = externalStyles();
+
   return (
     <PositionCenter overlay>
       <View style={styles.container}>{children}</View>
@@ -10,12 +13,3 @@ const Modal = ({children}) => {
 };
 
 export default Modal;
-
-const styles = new StyleSheet.create({
-  container: {
-    maxWidth: '90%',
-    padding: 16,
-    borderRadius: 10,
-    backgroundColor: '#ffffff',
-  },
-});

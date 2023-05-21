@@ -8,7 +8,8 @@ export const intialState = {
     title: 'Success',
     messages: ['Processed successfully'],
   },
-  availableDevicesModal: {show: true, devices: []},
+  availableDevicesModal: {show: true},
+  disableSecurityModal: {show: true},
 };
 
 export const reducer = (state, action) => {
@@ -27,6 +28,9 @@ export const reducer = (state, action) => {
     case ACTIONS.SET_SHOW_AVAILABLE_DEVICES_MODAL:
       const availableDevicesModal = {...payload};
       return {...state, availableDevicesModal};
+    case ACTIONS.SET_SHOW_DISABLE_SECURITY_MODAL:
+      const disableSecurityModal = {...payload};
+      return {...state, disableSecurityModal};
     default:
       throw Error(`Unhandled action type: "${type}"`);
   }

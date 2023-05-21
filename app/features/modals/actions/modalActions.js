@@ -3,4 +3,5 @@ export const ACTIONS = {
   SET_SHOW_ERROR_MODAL: 'set-show-error-modal',
   SET_SHOW_SUCCESS_MODAL: 'set-show-success-modal',
   SET_SHOW_AVAILABLE_DEVICES_MODAL: 'set-show-available-devices-modal',
+  SET_SHOW_DISABLE_SECURITY_MODAL: 'set-show-disable-security-modal',
 };

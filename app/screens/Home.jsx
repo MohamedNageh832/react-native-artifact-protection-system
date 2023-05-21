@@ -5,6 +5,7 @@ import {
   SuccessModal,
   useModals,
   AvailableDevicesModal,
+  DisableSecurityModal,
 } from '../features/modals';
 import {useMemo} from 'react';
 
@@ -16,6 +17,10 @@ const Home = () => {
     () => <AvailableDevicesModal />,
     [],
   );
+  const renderDisableSecurityModal = useMemo(
+    () => <DisableSecurityModal />,
+    [],
+  );
   const renderSuccessModal = useMemo(() => <SuccessModal />, []);
   const renderErrorModal = useMemo(() => <ErrorModal />, []);
 
@@ -24,6 +29,7 @@ const Home = () => {
       <Header />
       <ComponentsState />
       {state.availableDevicesModal.show && renderAvailableDevicesModal}
+      {state.disableSecurityModal.show && renderDisableSecurityModal}
       {state.loadingModal.show && renderLoadingModal}
       {state.successModal.show && renderSuccessModal}
       {state.errorModal.show && renderErrorModal}
