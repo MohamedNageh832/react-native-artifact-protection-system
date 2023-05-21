@@ -4,7 +4,12 @@ import {COLORS} from '../../../../services/colors';
 export const externalStyles = () => {
   return new StyleSheet.create({
     title: {
-      color: COLORS.red,
+      fontSize: 20,
+      fontWeight: 700,
+    },
+    subTitle: {
+      fontSize: 14,
+      color: COLORS.secondary,
     },
   });
 };

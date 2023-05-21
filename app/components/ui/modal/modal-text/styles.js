@@ -3,8 +3,10 @@ import {COLORS} from '../../../../services/colors';
 
 export const externalStyles = () => {
   return new StyleSheet.create({
-    title: {
-      color: COLORS.red,
+    text: {
+      marginVertical: 8,
+      color: COLORS.secondary,
+      fontSize: 14,
     },
   });
 };

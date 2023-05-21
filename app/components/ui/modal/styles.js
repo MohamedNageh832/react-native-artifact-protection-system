@@ -1,10 +1,12 @@
 import {StyleSheet} from 'react-native';
-import {COLORS} from '../../../../services/colors';
 
 export const externalStyles = () => {
   return new StyleSheet.create({
-    title: {
-      color: COLORS.red,
+    container: {
+      maxWidth: '95%',
+      padding: 16,
+      borderRadius: 10,
+      backgroundColor: '#ffffff',
     },
   });
 };
